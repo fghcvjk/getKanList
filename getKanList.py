@@ -37,10 +37,13 @@ for index, kanName in enumerate(kanNameDataList):
     except:
         errorkanNames[index] = kanName
 print 'error data:', errorkanNames
- #获取有问题的手动处理一下
-kanNameList.extend([])
-for rmName in []:
-    kanNameList.remove(rmName)
+#获取有问题的手动处理一下
+for addName in ['岚', '萩风']:
+    if addName not in kanNameList:
+        kanNameList.append(addName)
+for rmName in ['丸輸']:
+    if rmName in kanNameList:
+        kanNameList.remove(rmName)
 kanNameList.sort()
 
 print 'kan num:', len(kanNameList)

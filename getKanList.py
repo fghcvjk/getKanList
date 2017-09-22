@@ -14,13 +14,15 @@ getKanList = getKanStr.split(', ')
 #日文wiki有谷歌验证所以不使用了
 # url = 'https://zh.kcwiki.org/wiki/%E8%88%B0%E5%A8%98%E5%9B%BE%E9%89%B4' #舰娘百科
 url = 'https://zh.moegirl.org/%E8%88%B0%E9%98%9FCollection/%E5%9B%BE%E9%89%B4/%E8%88%B0%E5%A8%98#' #萌娘百科
+user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+headers = { 'User-Agent' : user_agent }
 # pattern = re.compile(r'(?<=<img alt=").+?(?=" src=")') #解析舰娘百科用正则表达式
 pattern = re.compile(r'(?<=" title=").+?">No\.[0-9]{3} (.+?)(?=</a>)') #解析萌娘百科用正则表达式
 subPattern = re.compile(r'(?<=">).+?(?=</span>)') #萌娘百科的部分数据需要二次解析
 
 #获取网页数据
 try:
-    request = urllib2.Request(url)
+    request = urllib2.Request(url, headers = headers)
     response = urllib2.urlopen(request)
     urlData = response.read()
 except urllib2.URLError, e:
